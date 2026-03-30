@@ -18,12 +18,11 @@ Before you start developing, follow these steps:
     cp .env.template .env
     ```
 3.  **Generate secret tokens:**
-    Open the Python terminal and generate secrets for `access_token` and other fields:
-    ```python
-    import secrets
-    print(secrets.token_urlsafe(32))
+    Run the following command in your terminal to generate unique keys:
+    ```bash
+    python -c "import secrets; print(f'RESET_SECRET: {secrets.token_urlsafe(32)}\nVERIFICATION_SECRET: {secrets.token_urlsafe(32)}')"
     ```
-    Copy the resulting strings into the corresponding fields in your `.env` file.
+    Copy the generated strings and paste them into the corresponding fields in your `.env` file.
 
 4.  **Database:**
     ⚠️ **Don't forget** to change the database URLs (`DATABASE_URL`) in the `.env` file to match your local settings or Docker container.
