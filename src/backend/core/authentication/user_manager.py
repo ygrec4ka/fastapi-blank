@@ -1,7 +1,6 @@
 import logging
-from typing import Optional, TYPE_CHECKING, Annotated
+from typing import Optional, TYPE_CHECKING
 
-from fastapi import Depends, Request
 from fastapi_users import BaseUserManager, IntegerIDMixin
 from fastapi_users_db_sqlalchemy import SQLAlchemyUserDatabase
 
@@ -72,12 +71,3 @@ class UserManager(IntegerIDMixin, BaseUserManager[User, UserIdType]):
             "User %r has been verified.",
             user.id,
         )
-
-
-async def get_user_manager(
-    user_db: Annotated[
-        SQLAlchemyUserDatabase[User, UserIdType],
-        Depends(User.get_db),
-    ],
-):
-    yield UserManager(user_db)
